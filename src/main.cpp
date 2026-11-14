@@ -101,7 +101,8 @@ int main()
         cout << "5. Search Expense\n";
         cout << "6. Monthly Report\n";
         cout << "7. Display Category-wise Expenses\n";
-        cout << "8. Exit\n";
+        cout << "8. Delete Expense\n";
+        cout << "9. Exit\n";
 
         choice = inputInteger("\nEnter your choice: ");
 
@@ -153,6 +154,11 @@ int main()
             p.displaycategorywise();
         }
         else if (choice == 8)
+        {
+            int id = inputInteger("Enter Expense ID to Delete: ");
+            p.deleteexp(id);
+        }
+        else if (choice == 9)
         {
             cout << "Thank You for Using Personal Expense Tracker!\n";
             break;
