@@ -1,6 +1,8 @@
 #include <iostream>
 #include <map>
 #include "PersonalExpenseTracker.h"
+#include <algorithm>
+#include <cctype>
 
 using namespace std;
 
@@ -73,11 +75,21 @@ double PersonalExpenseTracker::calculatetotal() const
 
 void PersonalExpenseTracker::searchexp(string name) const
 {
+    string searchName = name;
+
+    transform(searchName.begin(), searchName.end(), searchName.begin(),
+              [](unsigned char c) { return static_cast<char>(tolower(c)); });
+
     bool found = false;
 
     for (const auto &i : v)
     {
-        if (i.name == name)
+        string expenseName = i.name;
+
+        transform(expenseName.begin(), expenseName.end(), expenseName.begin(),
+                  [](unsigned char c) { return static_cast<char>(tolower(c)); });
+
+        if (expenseName.find(searchName) != string::npos)
         {
             cout << "Expense ID: " << i.id << endl;
             cout << "Name: " << i.name << endl;
@@ -152,6 +164,52 @@ void PersonalExpenseTracker::displaycategorywise() const
     }
 }
 
+<<<<<<< HEAD
+void PersonalExpenseTracker::sortexp(int option)
+{
+    if (v.empty())
+    {
+        cout << "No Expense to Sort\n";
+        return;
+    }
+
+    auto dateKey = [](const Date &d) {
+        return d.year * 10000 + d.month * 100 + d.date;
+    };
+
+    if (option == 1)
+    {
+        sort(v.begin(), v.end(), [](const Expense &a, const Expense &b) {
+            return a.amount < b.amount;
+        });
+    }
+    else if (option == 2)
+    {
+        sort(v.begin(), v.end(), [](const Expense &a, const Expense &b) {
+            return a.amount > b.amount;
+        });
+    }
+    else if (option == 3)
+    {
+        sort(v.begin(), v.end(), [dateKey](const Expense &a, const Expense &b) {
+            return dateKey(a.d) < dateKey(b.d);
+        });
+    }
+    else if (option == 4)
+    {
+        sort(v.begin(), v.end(), [dateKey](const Expense &a, const Expense &b) {
+            return dateKey(a.d) > dateKey(b.d);
+        });
+    }
+    else
+    {
+        cout << "Invalid Sort Option\n";
+        return;
+    }
+
+    cout << "Expenses Sorted Successfully\n";
+    displayexp();
+=======
 void PersonalExpenseTracker::deleteexp(int id)
 {
     for (vector<Expense>::iterator it = v.begin(); it != v.end(); ++it)
@@ -213,4 +271,5 @@ void PersonalExpenseTracker::showbudgetstatus() const
     {
         cout << "You are within your budget.\n";
     }
+>>>>>>> origin/main
 }
