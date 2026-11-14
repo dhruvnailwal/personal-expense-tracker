@@ -101,7 +101,8 @@ int main()
         cout << "5. Search Expense\n";
         cout << "6. Monthly Report\n";
         cout << "7. Display Category-wise Expenses\n";
-        cout << "8. Exit\n";
+        cout << "8. Sort Expenses\n";
+        cout << "9. Exit\n";
 
         choice = inputInteger("\nEnter your choice: ");
 
@@ -153,6 +154,16 @@ int main()
             p.displaycategorywise();
         }
         else if (choice == 8)
+        {
+            cout << "\n1. Amount (Low to High)\n";
+            cout << "2. Amount (High to Low)\n";
+            cout << "3. Date (Oldest First)\n";
+            cout << "4. Date (Newest First)\n";
+
+            int option = inputInteger("Choose sort option: ");
+            p.sortexp(option);
+        }
+        else if (choice == 9)
         {
             cout << "Thank You for Using Personal Expense Tracker!\n";
             break;
