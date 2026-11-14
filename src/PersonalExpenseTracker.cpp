@@ -1,6 +1,8 @@
 #include <iostream>
 #include <map>
 #include "PersonalExpenseTracker.h"
+#include <algorithm>
+#include <cctype>
 
 using namespace std;
 
@@ -73,11 +75,21 @@ double PersonalExpenseTracker::calculatetotal() const
 
 void PersonalExpenseTracker::searchexp(string name) const
 {
+    string searchName = name;
+
+    transform(searchName.begin(), searchName.end(), searchName.begin(),
+              [](unsigned char c) { return static_cast<char>(tolower(c)); });
+
     bool found = false;
 
     for (const auto &i : v)
     {
-        if (i.name == name)
+        string expenseName = i.name;
+
+        transform(expenseName.begin(), expenseName.end(), expenseName.begin(),
+                  [](unsigned char c) { return static_cast<char>(tolower(c)); });
+
+        if (expenseName.find(searchName) != string::npos)
         {
             cout << "Expense ID: " << i.id << endl;
             cout << "Name: " << i.name << endl;
