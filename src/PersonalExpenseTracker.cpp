@@ -151,3 +151,18 @@ void PersonalExpenseTracker::displaycategorywise() const
         cout << "------------------------------\n";
     }
 }
+
+void PersonalExpenseTracker::deleteexp(int id)
+{
+    for (vector<Expense>::iterator it = v.begin(); it != v.end(); ++it)
+    {
+        if (it->id == id)
+        {
+            v.erase(it);
+            cout << "Expense Deleted Successfully\n";
+            return;
+        }
+    }
+
+    cout << "Expense ID Not Found\n";
+}
