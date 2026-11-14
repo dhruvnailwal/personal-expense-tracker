@@ -172,6 +172,10 @@ void PersonalExpenseTracker::sortexp(int option)
         return;
     }
 
+    auto dateKey = [](const Date &d) {
+        return d.year * 10000 + d.month * 100 + d.date;
+    };
+
     if (option == 1)
     {
         sort(v.begin(), v.end(), [](const Expense &a, const Expense &b) {
@@ -182,6 +186,18 @@ void PersonalExpenseTracker::sortexp(int option)
     {
         sort(v.begin(), v.end(), [](const Expense &a, const Expense &b) {
             return a.amount > b.amount;
+        });
+    }
+    else if (option == 3)
+    {
+        sort(v.begin(), v.end(), [dateKey](const Expense &a, const Expense &b) {
+            return dateKey(a.d) < dateKey(b.d);
+        });
+    }
+    else if (option == 4)
+    {
+        sort(v.begin(), v.end(), [dateKey](const Expense &a, const Expense &b) {
+            return dateKey(a.d) > dateKey(b.d);
         });
     }
     else
