@@ -151,3 +151,66 @@ void PersonalExpenseTracker::displaycategorywise() const
         cout << "------------------------------\n";
     }
 }
+
+void PersonalExpenseTracker::deleteexp(int id)
+{
+    for (vector<Expense>::iterator it = v.begin(); it != v.end(); ++it)
+    {
+        if (it->id == id)
+        {
+            v.erase(it);
+            cout << "Expense Deleted Successfully\n";
+            return;
+        }
+    }
+
+    cout << "Expense ID Not Found\n";
+}
+
+void PersonalExpenseTracker::setincome(double i)
+{
+    if (i < 0)
+    {
+        cout << "Income cannot be negative\n";
+        return;
+    }
+
+    income = i;
+    cout << "Income Updated Successfully\n";
+}
+
+void PersonalExpenseTracker::setbudget(double b)
+{
+    if (b < 0)
+    {
+        cout << "Budget cannot be negative\n";
+        return;
+    }
+
+    budget = b;
+    cout << "Budget Updated Successfully\n";
+}
+
+void PersonalExpenseTracker::showbudgetstatus() const
+{
+    double spent = calculatetotal();
+
+    cout << "\n----- Budget Status -----\n";
+    cout << "Income: " << income << endl;
+    cout << "Budget: " << budget << endl;
+    cout << "Total Spent: " << spent << endl;
+    cout << "Remaining Budget: " << budget - spent << endl;
+
+    if (budget <= 0)
+    {
+        cout << "No budget has been set.\n";
+    }
+    else if (spent > budget)
+    {
+        cout << "Warning: You have exceeded your budget!\n";
+    }
+    else
+    {
+        cout << "You are within your budget.\n";
+    }
+}
