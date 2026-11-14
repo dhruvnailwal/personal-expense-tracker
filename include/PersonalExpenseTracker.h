@@ -25,6 +25,10 @@ public:
     void monthlyreport(int month, int year) const;
     void displaycategorywise() const;
     void deleteexp(int id);
+
+    void setincome(double i);
+    void setbudget(double b);
+    void showbudgetstatus() const;
 };
 
 #endif
