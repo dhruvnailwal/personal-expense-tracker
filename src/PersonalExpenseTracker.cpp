@@ -163,3 +163,33 @@ void PersonalExpenseTracker::displaycategorywise() const
         cout << "------------------------------\n";
     }
 }
+
+void PersonalExpenseTracker::sortexp(int option)
+{
+    if (v.empty())
+    {
+        cout << "No Expense to Sort\n";
+        return;
+    }
+
+    if (option == 1)
+    {
+        sort(v.begin(), v.end(), [](const Expense &a, const Expense &b) {
+            return a.amount < b.amount;
+        });
+    }
+    else if (option == 2)
+    {
+        sort(v.begin(), v.end(), [](const Expense &a, const Expense &b) {
+            return a.amount > b.amount;
+        });
+    }
+    else
+    {
+        cout << "Invalid Sort Option\n";
+        return;
+    }
+
+    cout << "Expenses Sorted Successfully\n";
+    displayexp();
+}
