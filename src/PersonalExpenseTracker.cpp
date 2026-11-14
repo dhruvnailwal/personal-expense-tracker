@@ -164,7 +164,6 @@ void PersonalExpenseTracker::displaycategorywise() const
     }
 }
 
-<<<<<<< HEAD
 void PersonalExpenseTracker::sortexp(int option)
 {
     if (v.empty())
@@ -209,7 +208,8 @@ void PersonalExpenseTracker::sortexp(int option)
 
     cout << "Expenses Sorted Successfully\n";
     displayexp();
-=======
+}
+
 void PersonalExpenseTracker::deleteexp(int id)
 {
     for (vector<Expense>::iterator it = v.begin(); it != v.end(); ++it)
@@ -271,5 +271,4 @@ void PersonalExpenseTracker::showbudgetstatus() const
     {
         cout << "You are within your budget.\n";
     }
->>>>>>> origin/main
 }
