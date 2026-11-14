@@ -24,6 +24,7 @@ public:
     void searchexp(string name) const;
     void monthlyreport(int month, int year) const;
     void displaycategorywise() const;
+    void sortexp(int option);
 };
 
 #endif
