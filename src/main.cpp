@@ -43,6 +43,30 @@ double inputAmount()
     }
 }
 
+double inputNonNegative(const string &prompt)
+{
+    double value;
+
+    while (true)
+    {
+        cout << prompt;
+
+        if (cin >> value)
+        {
+            if (value >= 0)
+                return value;
+
+            cout << "Value cannot be negative.\n";
+        }
+        else
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input. Please enter a number.\n";
+        }
+    }
+}
+
 Date inputDate()
 {
     int date, month, year;
@@ -101,8 +125,15 @@ int main()
         cout << "5. Search Expense\n";
         cout << "6. Monthly Report\n";
         cout << "7. Display Category-wise Expenses\n";
+<<<<<<< HEAD
         cout << "8. Sort Expenses\n";
         cout << "9. Exit\n";
+=======
+        cout << "8. Delete Expense\n";
+        cout << "9. Set Income / Budget\n";
+        cout << "10. View Budget Status\n";
+        cout << "11. Exit\n";
+>>>>>>> origin/main
 
         choice = inputInteger("\nEnter your choice: ");
 
@@ -155,6 +186,7 @@ int main()
         }
         else if (choice == 8)
         {
+<<<<<<< HEAD
             cout << "\n1. Amount (Low to High)\n";
             cout << "2. Amount (High to Low)\n";
             cout << "3. Date (Oldest First)\n";
@@ -165,6 +197,25 @@ int main()
         }
         else if (choice == 9)
         {
+=======
+            int id = inputInteger("Enter Expense ID to Delete: ");
+            p.deleteexp(id);
+        }
+        else if (choice == 9)
+        {
+            double inc = inputNonNegative("Enter Income: ");
+            p.setincome(inc);
+
+            double bud = inputNonNegative("Enter Budget: ");
+            p.setbudget(bud);
+        }
+        else if (choice == 10)
+        {
+            p.showbudgetstatus();
+        }
+        else if (choice == 11)
+        {
+>>>>>>> origin/main
             cout << "Thank You for Using Personal Expense Tracker!\n";
             break;
         }

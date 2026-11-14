@@ -24,7 +24,15 @@ public:
     void searchexp(string name) const;
     void monthlyreport(int month, int year) const;
     void displaycategorywise() const;
+<<<<<<< HEAD
     void sortexp(int option);
+=======
+    void deleteexp(int id);
+
+    void setincome(double i);
+    void setbudget(double b);
+    void showbudgetstatus() const;
+>>>>>>> origin/main
 };
 
 #endif
